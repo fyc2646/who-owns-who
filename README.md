@@ -1,6 +1,6 @@
 # Who Owes Who 💰
 
-A production-quality Python package and beautiful Flask web application for settling shared trip expenses among friends. Compute the minimal set of transfers so everyone ends up paying their fair share.
+Python package and Flask web application for settling shared trip expenses among friends. Compute the minimal set of transfers so everyone ends up paying their fair share.
 
 [![GitHub](https://img.shields.io/badge/GitHub-fyc2646%2Fwho--owns--who-blue)](https://github.com/fyc2646/who-owns-who)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://www.python.org/)
