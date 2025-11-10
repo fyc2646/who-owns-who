@@ -1,18 +1,57 @@
-# tripsettle
+# Who Owes Who 💰
 
-A production-quality Python 3.11+ package for settling shared trip expenses among friends. Compute the minimal set of transfers so everyone ends up paying their fair share.
+A production-quality Python package and beautiful Flask web application for settling shared trip expenses among friends. Compute the minimal set of transfers so everyone ends up paying their fair share.
+
+[![GitHub](https://img.shields.io/badge/GitHub-fyc2646%2Fwho--owns--who-blue)](https://github.com/fyc2646/who-owns-who)
+[![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 ## Features
 
+### Python Package
 - **Multiple Split Strategies**: Equal, weighted, or fixed shares per activity
 - **Multi-Payer Support**: Handle activities where multiple people contribute
 - **Precise Money Handling**: Uses `Decimal` for all currency math with banker's rounding
 - **Minimal Transfers**: Computes the smallest number of transfers needed to settle expenses
-- **Clean API**: No CLI, just a Python API designed for integration
+- **Clean API**: Python API designed for integration
 - **Comprehensive Testing**: 100% branch coverage for core modules
 - **Type Safe**: Full type hints with mypy strict checking
 
+### Web Application
+- 🎨 **Elegant UI**: Modern, responsive design with a beautiful gradient background
+- 👥 **People Management**: Easily add people to your event
+- 💰 **Activity Tracking**: Add expenses with different split strategies
+- 📊 **Settlement View**: See who owes whom with detailed summaries
+- 📱 **Responsive**: Works great on desktop and mobile devices
+
 ## Quick Start
+
+### Web Application (Recommended)
+
+1. **Install Flask**:
+```bash
+pip install flask
+```
+
+2. **Run the application**:
+```bash
+python app.py
+```
+
+3. **Open your browser**:
+```
+http://localhost:5000
+```
+
+4. **Start using it**:
+   - Create an event
+   - Add people
+   - Add activities
+   - Compute settlement!
+
+See [QUICKSTART.md](QUICKSTART.md) for a detailed walkthrough.
+
+### Python Package
 
 ```python
 from decimal import Decimal
@@ -63,16 +102,26 @@ for transfer in transfers:
 
 ## Installation
 
+### For Development
+
 ```bash
-pip install tripsettle
+# Clone the repository
+git clone https://github.com/fyc2646/who-owns-who.git
+cd who-owns-who
+
+# Install in development mode
+pip install -e ".[dev]"
 ```
 
-For development:
+### Dependencies
 
+The package requires:
+- Python 3.11+
+- Flask 3.0+ (for web application)
+
+Install Flask:
 ```bash
-git clone https://github.com/yourusername/tripsettle.git
-cd tripsettle
-pip install -e ".[dev]"
+pip install flask
 ```
 
 ## Split Strategies
@@ -164,7 +213,19 @@ to_csv(event, transfers, summary, "output/")
 
 See `examples/` directory for CSV schema examples.
 
-## API Reference
+## Web Application API
+
+The Flask app provides REST API endpoints:
+
+- `POST /api/event` - Create a new event
+- `GET /api/event/<event_id>` - Get event details
+- `POST /api/event/<event_id>/person` - Add a person to an event
+- `POST /api/event/<event_id>/activity` - Add an activity to an event
+- `GET /api/event/<event_id>/settlement` - Compute settlement
+
+See [README_FLASK.md](README_FLASK.md) for more details.
+
+## Python API Reference
 
 ### Event
 
@@ -198,6 +259,26 @@ ruff check tripsettle
 black --check tripsettle
 ```
 
+## Project Structure
+
+```
+who-owes-who/
+├── tripsettle/          # Python package
+│   ├── __init__.py
+│   ├── models.py        # Data models
+│   ├── strategies.py    # Split strategies
+│   ├── compute.py       # Settlement computation
+│   ├── io.py            # CSV/JSON I/O
+│   ├── errors.py        # Custom exceptions
+│   └── utils.py         # Utilities
+├── app.py               # Flask web application
+├── templates/           # HTML templates
+├── static/              # CSS and JavaScript
+├── tests/               # Test suite
+├── examples/            # Example CSV files
+└── docs/                # Documentation
+```
+
 ## Design
 
 See [DESIGN.md](DESIGN.md) for detailed information about:
@@ -207,9 +288,16 @@ See [DESIGN.md](DESIGN.md) for detailed information about:
 
 ## License
 
-MIT License - see LICENSE file for details.
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Contributing
 
 Contributions welcome! Please open an issue or submit a pull request.
 
+## Repository
+
+**GitHub**: [fyc2646/who-owns-who](https://github.com/fyc2646/who-owns-who)
+
+---
+
+Made with ❤️ for fair expense splitting
